@@ -1,0 +1,35 @@
+import telebot
+token = '862253650:AAGrF1gjMtem04HR_TtExAWyrDzOkcEMMxI'
+bot = telebot.TeleBot(token)
+
+sana = "приходит эсэмэска саня купи картошки яйца хлеб пошёл купил а после вспомнил я ж глеб"
+anna = "вот сгинул титаник в холодной воде вот боинг взорвался нежданно а ты почему выбираешь жэдэ анна"
+pavel = "пахать отнекивался павел а пить отдакивался он"
+pasha = "поскольку я люблю вас паша уйдите раньше остальных а то пока я успокоюсь а завтра в семь утра вставать"
+kosta = "в константинополе наш костя создал дебош ушёл в загул от страха город превратился в стамбул"
+konstantin = "за каждой юбкой волочился любвеобильный константин шотландцы собирались в группы чтоб отбиваться от него"
+
+@bot.message_handler(content_types=['text'])
+def get_name(message): #получаем фамилию
+    bot.send_message(message.from_user.id, 'введи свое имя')
+    bot.register_next_step_handler(message, start)
+def start(message):
+    global sana
+    global anna
+    global pavel
+    global pasha
+    if str.lower(message.text) == 'саня':
+        bot.send_message(message.from_user.id, sana)
+    elif message.text == 'анна':
+        bot.send_message(message.from_user.id, anna)
+    elif message.text == 'павел':
+        bot.send_message(message.from_user.id, pavel)
+    elif message.text == 'паша':
+        bot.send_message(message.from_user.id, pasha)
+    elif str.lower(message.text) == 'костя':
+        bot.send_message(message.from_user.id, kosta)
+    elif str.lower(message.text) == 'константин':
+        bot.send_message(message.from_user.id, konstantin)
+
+
+bot.infinity_polling()
