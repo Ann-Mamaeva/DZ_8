@@ -1,0 +1,18 @@
+import telebot
+token = '862253650:AAGrF1gjMtem04HR_TtExAWyrDzOkcEMMxI'
+bot = telebot.TeleBot(token)
+
+p1 = "вы не стесняйтесь анатолий показывайте нам дружка мне член сказал собаководства кружка"
+p2 = "вот сгинул титаник в холодной воде вот боинг взорвался нежданно а ты почему выбираешь жэдэ анна"
+@bot.message_handler(content_types=['text'])
+def get_name(message): #получаем фамилию
+    bot.send_message(message.from_user.id, 'р1 или р2?')
+    bot.register_next_step_handler(message, start)
+def start(message):
+    global p1
+    global p2
+    if message.text == 'p1':
+        bot.send_message(message.from_user.id, p1)
+    elif message.text == 'p2':
+        bot.send_message(message.from_user.id, p2)
+bot.infinity_polling()
