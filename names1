@@ -8,11 +8,17 @@ pavel = "пахать отнекивался павел а пить отдаки
 pasha = "поскольку я люблю вас паша уйдите раньше остальных а то пока я успокоюсь а завтра в семь утра вставать"
 kosta = "в константинополе наш костя создал дебош ушёл в загул от страха город превратился в стамбул"
 konstantin = "за каждой юбкой волочился любвеобильный константин шотландцы собирались в группы чтоб отбиваться от него"
+sasha = "народ ковида испугался исчезла с площади толпа печален саша зарастает тропа"
+alexandr1 = "давайте просто выпьем водки сказал молчавший александр и это было так прекрасно на фоне вычурных идей"
+alex = "здесь атмосфера не из лучших сказал в уборной александр и спрятался в инопланетный скафандр"
+alex2 = "на чердаке у александра в шкафу пылится третий рейх он иногда откроет дверцу и говорит в нее зиг хайль"
+alexandr2 = "а александр серов то вроде грей саша будет в переводе"
 
-@bot.message_handler(content_types=['text'])
+@bot.message_handler(commands=['start'])
 def get_name(message): #получаем фамилию
     bot.send_message(message.from_user.id, 'введи свое имя')
     bot.register_next_step_handler(message, start)
+@bot.message_handler(content_types=['text'])
 def start(message):
     global sana
     global anna
@@ -20,16 +26,26 @@ def start(message):
     global pasha
     if str.lower(message.text) == 'саня':
         bot.send_message(message.from_user.id, sana)
-    elif message.text == 'анна':
+    if str.lower(message.text) == 'саша':
+        bot.send_message(message.from_user.id, sasha)
+    if str.lower(message.text) == 'александр':
+        bot.send_message(message.from_user.id, alexandr1)
+    if str.lower(message.text) == 'алекс':
+        bot.send_message(message.from_user.id, alex)
+    if str.lower(message.text) == 'alex':
+        bot.send_message(message.from_user.id, alex2)
+    if str.lower(message.text) == 'alexandr':
+        bot.send_message(message.from_user.id, alexandr2)
+    elif str.lower(message.text) == 'анна':
         bot.send_message(message.from_user.id, anna)
-    elif message.text == 'павел':
+    elif str.lower(message.text) == 'павел':
         bot.send_message(message.from_user.id, pavel)
-    elif message.text == 'паша':
+    elif str.lower(message.text) == 'паша':
         bot.send_message(message.from_user.id, pasha)
     elif str.lower(message.text) == 'костя':
         bot.send_message(message.from_user.id, kosta)
     elif str.lower(message.text) == 'константин':
         bot.send_message(message.from_user.id, konstantin)
-
+    bot.send_message(message.from_user.id, 'введи свое имя')
 
 bot.infinity_polling()
